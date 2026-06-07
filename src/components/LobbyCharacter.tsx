@@ -1,5 +1,7 @@
+"use client";
+
 import React from 'react';
-import { CharacterConfig } from '../types';
+import { CharacterConfig } from '@/src/types';
 import { Crown, MessageCircle, X, Info } from 'lucide-react';
 
 interface LobbyCharacterProps {
