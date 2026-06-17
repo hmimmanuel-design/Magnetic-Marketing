@@ -1,7 +1,5 @@
-"use client";
-
 import React from 'react';
-import { CharacterConfig } from '@/src/types';
+import { CharacterConfig } from '../types';
 import { Crown, MessageCircle, X, Info } from 'lucide-react';
 
 interface LobbyCharacterProps {
@@ -112,7 +110,7 @@ export const LobbyCharacter: React.FC<LobbyCharacterProps> = ({ config, isLeader
       {/* MOBILE FULL SCREEN SPEECH OVERLAY (Game Dialog Style) */}
       {isOpen && config.speechText && (
         <div 
-          className="fixed inset-0 z-50 md:hidden flex items-end justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 md:hidden flex items-start justify-center bg-black/60 backdrop-blur-sm p-4 pt-16 animate-in fade-in duration-200"
           onClick={(e) => {
             e.stopPropagation();
             onToggle(false);
@@ -120,7 +118,7 @@ export const LobbyCharacter: React.FC<LobbyCharacterProps> = ({ config, isLeader
         >
           {/* Dialog Box */}
           <div 
-            className="w-full bg-slate-900 border-2 border-blue-400/50 p-6 rounded-lg shadow-[0_0_30px_rgba(0,0,0,0.8)] relative mb-8 animate-in slide-in-from-bottom-10"
+            className="w-full bg-slate-900 border-2 border-blue-400/50 p-6 rounded-lg shadow-[0_0_30px_rgba(0,0,0,0.8)] relative animate-in slide-in-from-top-10"
             onClick={(e) => e.stopPropagation()} 
           >
               {/* Floating Name Header */}
@@ -144,12 +142,16 @@ export const LobbyCharacter: React.FC<LobbyCharacterProps> = ({ config, isLeader
                {onInfoClick && (
                   <button 
                     onClick={(e) => { 
+                        e.preventDefault();
                         e.stopPropagation(); 
-                        onInfoClick(); 
+                        onInfoClick();
+                        setTimeout(() => {
+                            onToggle(false);
+                        }, 50); 
                     }}
-                    className="mt-2 text-xs bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded shadow-lg border border-blue-400/50 flex items-center justify-center gap-2 transition-colors uppercase font-bold"
+                    className="mt-4 text-sm bg-blue-600 active:bg-blue-700 text-white px-6 py-3 w-full rounded shadow-lg border border-blue-400/50 flex items-center justify-center gap-2 transition-colors uppercase font-bold"
                   >
-                    <Info size={14} />
+                    <Info size={16} />
                     Meer informatie voor {config.name.split(' ')[0]}
                   </button>
               )}

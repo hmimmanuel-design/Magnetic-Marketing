@@ -1,6 +1,5 @@
-"use client";
-
 import React from 'react';
+import { ArrowRight, Lock } from 'lucide-react';
 
 interface GameButtonProps {
   label: string;
